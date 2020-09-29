@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rxc.dao.StudentMapper">
+
+    <select id="getAllStudent" resultType="Student">
+        select *
+        from learning.student;
+    </select>
+
+    <select id="getStudentBySno" parameterType="String" resultType="com.rxc.pojo.Student">
+        select *
+        from learning.student
+        where sno = #{sno};
+    </select>
+
+    <insert id="addStudent" parameterType="com.rxc.pojo.Student">
+        insert into learning.student(sno, sname)
+        VALUES (#{sno}, #{sname});
+    </insert>
+</mapper>
