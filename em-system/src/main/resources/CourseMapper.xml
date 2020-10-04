@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rxc.mapper.CourseMapper">
+
+    <insert id="addCourse" parameterType="course">
+        insert into course(cno, cname, cterm, ccredit, chours)
+        VALUES (#{course.cno}, #{course.cname}, #{course.cterm}, #{course.ccredit}, #{course.chours})
+    </insert>
+
+    <!--批量添加课程-->
+    <insert id="addCourseByBatch" parameterType="list">
+        insert into course(cno, cname, cterm, ccredit, chours) values
+        <foreach collection="courseList" item="course" separator=",">
+            (#{course.cno}, #{course.cname}, #{course.cterm}, #{course.ccredit}, #{course.chours})
+        </foreach>
+    </insert>
+
+    <select id="getAllCourse" resultType="course">
+        select *
+        from course
+    </select>
+
+    <select id="getCourseByCno" resultType="course" parameterType="string">
+        select *
+        from course
+        where cno = #{cno}
+    </select>
+
+    <select id="getCourseByCname" resultType="course" parameterType="string">
+        select *
+        from course
+        where cname LIKE "%"#{cname}"%"
+    </select>
+</mapper>

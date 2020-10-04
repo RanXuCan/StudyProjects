@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rxc.mapper.StudentMapper">
+
+    <insert id="addStudent" parameterType="student">
+        insert into student(sno, sname, sidentityNum, ssex, classno, sphone, stotalcredit, spassword)
+        VALUES (#{student.sno}, #{student.sname}, #{student.sidentityNum}, #{student.ssex}, #{student.classno},
+                #{student.sphone}, #{student.stotalcredit}, #{student.spassword})
+    </insert>
+
+    <select id="getAllStudentByLimit" parameterType="map" resultType="student">
+        select *
+        from student
+        limit #{offset},#{pageSize}
+    </select>
+
+</mapper>
