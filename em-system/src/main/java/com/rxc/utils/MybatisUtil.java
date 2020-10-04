@@ -1,4 +1,4 @@
-package com.rxc.Utils;
+package com.rxc.utils;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,24 +9,32 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @Description: mybatis工具类，返回mybatis的SqlSession实例
+ * @Description: 获取mybatis的sqlSession实例
  * @Author RanXuCan
- * @Date 2020/9/29 15:51
+ * @Date 2020/9/30 14:44
  */
-public class MyBatisUtils {
+public class MybatisUtil {
     private static SqlSessionFactory sqlSessionFactory;
+    private static InputStream inputStream;
 
     static {
         try {
-            String resource = "mybatis-config.xml";
-            InputStream inputStream = Resources.getResourceAsStream(resource);
+            inputStream = Resources.getResourceAsStream("mybatis-config.xml");
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
-    public static SqlSession getSqlSession() {
+    public static synchronized SqlSession getSqlSession() {
         return sqlSessionFactory.openSession();
     }
 }

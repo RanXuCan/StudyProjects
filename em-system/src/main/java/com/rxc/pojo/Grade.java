@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 /**
  * @Description:
  * @Author RanXuCan
- * @Date 2020/9/29 15:15
+ * @Date 2020/9/30 0:05
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+@AllArgsConstructor
+public class Grade {
+    int tcid;
     String sno;
-    String sname;
-    int age;
+    double cscore;
 }

@@ -1,4 +1,4 @@
-package com.rxc.entity;
+package com.rxc.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 /**
  * @Description:
  * @Author RanXuCan
- * @Date 2020/9/28 17:03
+ * @Date 2020/9/30 0:04
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
-    String name;
-    String sex;
-    String no;
-    String password;
+public class Tc {
+    int tcid;
+    String cno;
+    String tno;
 }
